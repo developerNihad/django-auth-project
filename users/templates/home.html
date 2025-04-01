@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: teal;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            background-color: rgb(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: rgb(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Welcome 
+        {% if user.is_authenticated %}
+            {{ user.username }}
+        {% else %}
+            Guest
+        {% endif %}
+    </h1>
+    
+    <nav>
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}">Login</a>
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% endif %}
+    </nav>
+</body>
+</html>
